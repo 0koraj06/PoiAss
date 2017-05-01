@@ -16,44 +16,35 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.config.Configuration;
 
 
-public class PoiAssess extends Activity implements OnClickListener {
+public class PoiAssess extends Activity  {
 
     MapView mv;
 
-    /** Called when the activity is first created. */
+    /**
+     * Called when the activity is first created.
+     */
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         // This line sets the user agent, a requirement to download OSM maps
-       Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
+        Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
 
 
-
-        mv = (MapView)findViewById(R.id.map1);
+        mv = (MapView) findViewById(R.id.map1);
 
         mv.setBuiltInZoomControls(true);
         mv.getController().setZoom(14);
-        mv.getController().setCenter(new GeoPoint(51.05,-0.72));
+        mv.getController().setCenter(new GeoPoint(51.05, -0.72));
 
 
     }
 
 
 
-    public void onClick(View view) {
-        EditText et1 = (EditText) findViewById(R.id.latitudelocation);
-        double latitude = Double.parseDouble(et1.getText().toString());
 
-        EditText et2 = (EditText) findViewById(R.id.longitudelocation);
-        double longitude = Double.parseDouble(et2.getText().toString());
-
-        mv.getController().setCenter(new GeoPoint(latitude, longitude));
-
-    }
 
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -70,7 +61,7 @@ public class PoiAssess extends Activity implements OnClickListener {
 
 
             Intent intent = new Intent(this, SetLocation.class);
-            startActivity(intent);
+            startActivityForResult(intent,0);
             return true;
         }
         return false;
@@ -78,13 +69,13 @@ public class PoiAssess extends Activity implements OnClickListener {
 
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        if (resultCode == RESULT_OK) {
+        if (requestCode == 0) {
 
-            if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
                 Bundle extras = intent.getExtras();
-                double langitudelocation = extras.getDouble("com.example.SetLatitude");
-                double longitudelocation = extras.getDouble("com.example.SetLongitude");
-                mv.getController().setCenter(new GeoPoint(langitudelocation, longitudelocation));
+                double latitudelocation = extras.getDouble("com.example.latitudelocation");
+                double longitudelocation = extras.getDouble("com.example.longitudelocation");
+                mv.getController().setCenter(new GeoPoint(latitudelocation,longitudelocation));
             }
 
         }

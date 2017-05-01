@@ -17,7 +17,7 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.config.Configuration;
 
-public class SetLocation extends Activity implements OnClickListener {
+public class SetLocation extends Activity implements View.OnClickListener {
 
     MapView mv;
 
@@ -25,18 +25,14 @@ public class SetLocation extends Activity implements OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.location);
 
 
 
-        mv = (MapView) findViewById(R.id.map1);
 
-        mv.setBuiltInZoomControls(true);
-        mv.getController().setZoom(14);
-        mv.getController().setCenter(new GeoPoint(51.3, -0.098));
 
-        Button buttonlocation = (Button) findViewById(R.id.buttonlocation);
-        buttonlocation.setOnClickListener(this);
+        Button b = (Button) findViewById(R.id.buttonlocation);
+        b.setOnClickListener(this);
 
     }
 
@@ -50,8 +46,17 @@ public class SetLocation extends Activity implements OnClickListener {
         double latitudelocation = Double.parseDouble(et1.getText().toString());
         EditText et2 = (EditText) findViewById(R.id.longitudelocation);
         double longitudelocation = Double.parseDouble(et2.getText().toString());
-        mv.getController().setCenter(new GeoPoint(latitudelocation, longitudelocation));
 
+
+
+        Bundle bundle = new Bundle();
+        bundle.putDouble("com.example.latitudelocation", latitudelocation);
+        bundle.putDouble("com.example.longitudelocation", longitudelocation);
+
+        Intent intent = new Intent();
+        intent.putExtras(bundle);
+        setResult(RESULT_OK,intent);
+        finish();
 
 
     }
