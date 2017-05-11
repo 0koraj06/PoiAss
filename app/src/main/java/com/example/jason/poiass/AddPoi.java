@@ -46,6 +46,8 @@ public class AddPoi extends Activity implements View.OnClickListener {
         bundle.putString("com.example.poitype", poitype);
         bundle.putString("com.example.poidesc", poidesc);
 
+
+
         Intent intent = new Intent();
         intent.putExtras(bundle);
         setResult(RESULT_OK,intent);

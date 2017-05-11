@@ -25,7 +25,6 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".SetLocation" android:label="@string/setlocation"></activity>
         <activity android:name=".AddPoi" android:label="@string/addPoi"></activity>
     </application>
 

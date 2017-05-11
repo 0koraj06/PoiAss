@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/setlocation" android:title="@string/setlocation" />
-    <item android:id="@+id/addPoi" android:title="@string/addPoi" />
 
+    <item android:id="@+id/addPoi" android:title="@string/addPoi" />
+    <item android:id="@+id/save" android:title="Save" />
 
 </menu>

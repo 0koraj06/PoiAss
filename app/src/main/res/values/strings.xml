@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">PoiAss</string>
-    <string name="setlocation"> Set Location</string>
     <string name="addPoi"> Add Point of Interest</string>
 </resources>
